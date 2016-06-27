@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>Datenbank Arbeitskräfte</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static "css/BWW.css" %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script> jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.document.location = $(this).data("href");
+        });
+    });</script>
+</head>
+
+<body>
+
+    <div class="title">
+        <a href="{% url 'arbeitskraft_list' %}" class="top-menu">Arbeitskräfte</a>
+        <a href="{% url 'arbeitskraft_neu' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <h1><a href="/">Home</a></h1>
+    </div>
+
+    <div class="database-view">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+</body>
+
+</html>

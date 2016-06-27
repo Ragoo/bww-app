@@ -1,0 +1,22 @@
+{% extends 'BWW/base.html' %}
+
+{% block content %}
+    <div class="arbeitskraft_detail">
+         <a class="btn btn-default" href="{% url 'arbeitskraft_edit' pk=arbeitskraft.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+
+        <p>Vorname: {{ arbeitskraft.vorname }}</p>
+        <p>Nachname: {{ arbeitskraft.nachname }}</p>
+
+        {% if arbeitskraft.ausweisnummer %}
+               <p>Ausweisnummer: {{ arbeitskraft.ausweisnummer }}</p>
+        {% endif %}
+
+        {% if arbeitskraft.strasse %}
+              <p> Adresse: {{ arbeitskraft.strasse }} {{ arbeitskraft.hausnummer }} , {{ arbeitskraft.plz }}</p>
+        {% endif %}
+
+
+
+    </div>
+{% endblock %}

@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'BeaconWorkforceWeb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'beaconworkforcedb',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+        'NAME': 'beacondb',
+        'USER': 'beacondb',
+        'PASSWORD': 'Yt3LHarzN8~-',
+        'HOST': 'mysql3.gear.host',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }

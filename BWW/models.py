@@ -46,13 +46,16 @@ class ArbeitskraftHasProjekt(models.Model):
 
 
 class Beacon(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    id = models.CharField(db_column='ID',max_length=10, primary_key=True)  # Field name made lowercase.
     zuletzt_gesehen = models.DateTimeField(blank=True, null=True)
     letzter_boot = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'beacon'
+
+    def __str__(self):
+        return 'ID: '+  self.id.__str__()
 
 
 class Benutzer(models.Model):

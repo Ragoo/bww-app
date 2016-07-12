@@ -16,7 +16,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 class ArbeitskraftSerializer(serializers.HyperlinkedModelSerializer):
     firma = serializers.CharField(source='firma.name')
+    beacon = serializers.CharField(source='beacon.id')
 
     class Meta:
         model = Arbeitskraft
-        fields = ('id','nachname', 'vorname','firma')
+        fields = ('id','nachname', 'vorname','firma','foto','beacon')

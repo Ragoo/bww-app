@@ -1,0 +1,18 @@
+{% extends 'BWW/base.html' %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td class="tdlabel"> Name</td>
+        </tr>
+
+        {% for projekt in projekt %}
+            <tr class='clickable-row' data-href="{% url 'projekt_detail' pk=projekt.pk %}">
+
+                <td> {{ projekt.name }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

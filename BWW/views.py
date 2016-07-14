@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Arbeitskraft, Firma,Beacon,Projekt
-from .forms import ArbeitskraftForm, FirmaForm
+from .forms import ArbeitskraftForm, FirmaForm, ProjektForm, BeaconForm
 
 """REST TEST IMPORTS"""
 from django.contrib.auth.models import User, Group
@@ -85,6 +85,79 @@ def firma_edit(request, pk):
     else:
         form = FirmaForm(instance=firma)
     return render(request, 'BWW/firma_edit.html', {'form': form})
+
+"""
+Projekt
+"""
+def projekt_list(request):
+    projekt = Projekt.objects.order_by('name')
+    return render(request, 'BWW/projekt_list.html', {'projekt': projekt})
+
+def projekt_detail(request,pk):
+    projekt = get_object_or_404(Projekt, pk = pk)
+    return render(request, 'BWW/projekt_detail.html', {'projekt':projekt})
+
+
+def projekt_neu(request):
+    if request.method == "POST":
+        form = ProjektForm(request.POST)
+        if form.is_valid():
+            projekt = form.save(commit=False)
+            projekt.save()
+            return redirect('projekt_detail', pk=projekt.pk)
+    else:
+        form = ProjektForm()
+    return render(request, 'BWW/projekt_edit.html', {'form': form})
+
+
+def projekt_edit(request, pk):
+    projekt = get_object_or_404(Projekt, pk = pk)
+    if request.method == "POST":
+        form = ProjektForm(request.POST, instance=projekt)
+        if form.is_valid():
+            projekt = form.save(commit=False)
+            projekt.save()
+            return redirect('projekt_detail', pk=projekt.pk)
+    else:
+        form = ProjektForm(instance=projekt)
+    return render(request, 'BWW/projekt_edit.html', {'form': form})
+
+"""
+Beacon
+"""
+
+def beacon_list(request):
+    beacon = Beacon.objects.order_by('id')
+    return render(request, 'BWW/beacon_list.html', {'beacon': beacon})
+
+def beacon_detail(request,pk):
+    beacon = get_object_or_404(Beacon, pk = pk)
+    return render(request, 'BWW/beacon_detail.html', {'beacon':beacon})
+
+
+def beacon_neu(request):
+    if request.method == "POST":
+        form = BeaconForm(request.POST)
+        if form.is_valid():
+            beacon = form.save(commit=False)
+            beacon.save()
+            return redirect('beacon_detail', pk=beacon.pk)
+    else:
+        form = BeaconForm()
+    return render(request, 'BWW/beacon_edit.html', {'form': form})
+
+
+def beacon_edit(request, pk):
+    beacon = get_object_or_404(Beacon, pk = pk)
+    if request.method == "POST":
+        form = BeaconForm(request.POST, instance=beacon)
+        if form.is_valid():
+            beacon = form.save(commit=False)
+            beacon.save()
+            return redirect('beacon_detail', pk=beacon.pk)
+    else:
+        form = BeaconForm(instance=beacon)
+    return render(request, 'BWW/beacon_edit.html', {'form': form})
 
 
 """

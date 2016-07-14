@@ -28,6 +28,18 @@ urlpatterns = [
     url(r'^firma/new/$', views.firma_neu, name='firma_neu'),
     url(r'^firma/(?P<pk>\d+)/edit/$', views.firma_edit, name='firma_edit'),
 
+    # Projekt for Web
+    url(r'^projekt_list/$', views.projekt_list, name='projekt_list'),
+    url(r'^projekt_detail/(?P<pk>\d+)/$', views.projekt_detail, name='projekt_detail'),
+    url(r'^projekt/new/$', views.projekt_neu, name='projekt_neu'),
+    url(r'^projekt/(?P<pk>\d+)/edit/$', views.projekt_edit, name='projekt_edit'),
+
+    #Beacon for Web
+    url(r'^beacon_list/$', views.beacon_list, name='beacon_list'),
+    url(r'^becaon_detail/(?P<pk>\d+)/$', views.beacon_detail, name='beacon_detail'),
+    url(r'^beacon/new/$', views.beacon_neu, name='beacon_neu'),
+    url(r'^beacon/(?P<pk>\d+)/edit/$', views.beacon_edit, name='beacon_edit'),
+
 
     #Arbeitskraft for REST
 

@@ -13,3 +13,15 @@ class FirmaForm(forms.ModelForm):
     class Meta:
         model = Firma
         fields = ('name','strasse','hausnummer','plz','telefon')
+
+class ProjektForm(forms.ModelForm):
+
+    class Meta:
+        model = Projekt
+        fields = ('name',)
+
+class BeaconForm(forms.ModelForm):
+
+    class Meta:
+        model = Beacon
+        fields = ('id',)

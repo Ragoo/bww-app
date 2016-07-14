@@ -1,0 +1,20 @@
+{% extends 'BWW/base.html' %}
+
+{% block content %}
+    <div class="beacon_detail">
+         <a class="btn btn-default" href="{% url 'beacon_edit' pk=beacon.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+
+        <p>Name: {{ beacon.id }}</p>
+
+        {% if beacon.zuletzt_gesehen %}
+              <p> Zuletzt gesehen: {{ beacon.zuletzt_gesehen }}</p>
+        {% endif %}
+
+        {% if beacon.letzter_boot %}
+              <p> Letzter Reboot: {{ beacon.letzter_boot }}</p>
+        {% endif %}
+
+
+    </div>
+{% endblock %}

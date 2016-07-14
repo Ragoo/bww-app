@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Arbeitskraft
-from .forms import ArbeitskraftForm
+from .models import Arbeitskraft, Firma,Beacon,Projekt
+from .forms import ArbeitskraftForm, FirmaForm
 
 """REST TEST IMPORTS"""
 from django.contrib.auth.models import User, Group
@@ -12,6 +12,9 @@ from .serializers import UserSerializer, GroupSerializer, ArbeitskraftSerializer
 def home(request):
     return render(request, 'BWW/home.html')
 
+"""
+Arbeitskraft
+"""
 def arbeitskraft_list(request):
     arbeitskraft = Arbeitskraft.objects.order_by('vorname')
     return render(request, 'BWW/arbeitskraft_list.html', {'arbeitskraft': arbeitskraft})
@@ -45,6 +48,43 @@ def arbeitskraft_edit(request, pk):
     else:
         form = ArbeitskraftForm(instance=arbeitskraft)
     return render(request, 'BWW/arbeitskraft_edit.html', {'form': form})
+
+
+"""
+Firma
+"""
+def firma_list(request):
+    firma = Firma.objects.order_by('name')
+    return render(request, 'BWW/firma_list.html', {'firma': firma})
+
+def firma_detail(request,pk):
+    firma = get_object_or_404(Firma, pk = pk)
+    return render(request, 'BWW/firma_detail.html', {'firma':firma})
+
+
+def firma_neu(request):
+    if request.method == "POST":
+        form = FirmaForm(request.POST)
+        if form.is_valid():
+            firma = form.save(commit=False)
+            firma.save()
+            return redirect('firma_detail', pk=firma.pk)
+    else:
+        form = FirmaForm()
+    return render(request, 'BWW/firma_edit.html', {'form': form})
+
+
+def firma_edit(request, pk):
+    firma = get_object_or_404(Firma, pk = pk)
+    if request.method == "POST":
+        form = FirmaForm(request.POST, instance=firma)
+        if form.is_valid():
+            firma = form.save(commit=False)
+            firma.save()
+            return redirect('firma_detail', pk=firma.pk)
+    else:
+        form = FirmaForm(instance=firma)
+    return render(request, 'BWW/firma_edit.html', {'form': form})
 
 
 """

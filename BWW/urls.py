@@ -15,10 +15,22 @@ router.register(r'arbeitskraft',views.ArbeitskraftViewSet)
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+
+   #Arbeitskraft for Web
     url(r'^ak_list/$', views.arbeitskraft_list, name='arbeitskraft_list'),
     url(r'^ak_detail/(?P<pk>\d+)/$', views.arbeitskraft_detail, name='arbeitskraft_detail'),
     url(r'^ak/new/$', views.arbeitskraft_neu, name='arbeitskraft_neu'),
     url(r'^ak/(?P<pk>\d+)/edit/$', views.arbeitskraft_edit, name='arbeitskraft_edit'),
+
+    #Firma for Web
+    url(r'^firma_list/$',views.firma_list, name='firma_list'),
+    url(r'^firma_detail/(?P<pk>\d+)/$',views.firma_detail, name='firma_detail'),
+    url(r'^firma/new/$', views.firma_neu, name='firma_neu'),
+    url(r'^firma/(?P<pk>\d+)/edit/$', views.firma_edit, name='firma_edit'),
+
+
+    #Arbeitskraft for REST
+
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('^arbeitskraft/f/(?P<nachname>.+)/$', ArbeitskraftList.as_view()), # URL to filter REST request for arbeitskraft list by nachname

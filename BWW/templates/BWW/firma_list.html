@@ -1,0 +1,22 @@
+{% extends 'BWW/base.html' %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td class="tdlabel"> Name</td>
+            <td class="tdlabel"> Adresse</td>
+            <td class="tdlabel"> Telefonnummer</td>
+        </tr>
+
+        {% for firma in firma %}
+            <tr class='clickable-row' data-href="{% url 'firma_detail' pk=firma.pk %}">
+
+                <td> {{ firma.name }} {{ arbeitskraft.nachname }}</td>
+                <td> {{ firma.strasse }} {{ firma.hausnummer }} , {{ firma.plz }}</td>
+                <td> {{ firma.telefon }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

@@ -5,7 +5,7 @@ from .forms import ArbeitskraftForm, FirmaForm, ProjektForm, BeaconForm
 """REST TEST IMPORTS"""
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, generics
-from .serializers import UserSerializer, GroupSerializer, ArbeitskraftSerializer
+from .serializers import UserSerializer, GroupSerializer, ArbeitskraftSerializer,FirmaSerializer,BeaconSerializer,ProjektSerializer
 
 # Create your views here.
 
@@ -179,11 +179,17 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+
+"""
+Arbeitskraft REST
+"""
+#View for set of Arbeitskraft
 class ArbeitskraftViewSet(viewsets.ModelViewSet):
     """API endpoint that allows Arbeitskraft to be viewed or edited."""
     queryset = Arbeitskraft.objects.all().order_by('nachname')
     serializer_class = ArbeitskraftSerializer
 
+#view for single Arbeitskraft
 class ArbeitskraftList(generics.ListAPIView):
     serializer_class = ArbeitskraftSerializer
 
@@ -195,3 +201,26 @@ class ArbeitskraftList(generics.ListAPIView):
         nachname = self.kwargs['nachname']
         return Arbeitskraft.objects.filter(nachname=nachname)
 
+"""
+Firma REST
+"""
+
+class FirmaViewSet(viewsets.ModelViewSet):
+    queryset = Firma.objects.all().order_by('name')
+    serializer_class = FirmaSerializer
+
+"""
+Beacon REST
+"""
+
+class BeaconViewSet(viewsets.ModelViewSet):
+    queryset = Beacon.objects.all().order_by('id')
+    serializer_class = BeaconSerializer
+
+"""
+Projekt REST
+"""
+
+class ProjektViewSet(viewsets.ModelViewSet):
+    queryset = Projekt.objects.all().order_by('name')
+    serializer_class = ProjektSerializer

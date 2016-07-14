@@ -6,9 +6,12 @@ from .views import ArbeitskraftList
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-router.register(r'arbeitskraft',views.ArbeitskraftViewSet)
+router.register(r'api/users', views.UserViewSet)
+router.register(r'api/groups', views.GroupViewSet)
+router.register(r'api/arbeitskraft',views.ArbeitskraftViewSet)
+router.register(r'api/firma',views.FirmaViewSet)
+router.register(r'api/beacon',views.BeaconViewSet)
+router.register(r'api/projekt',views.ProjektViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

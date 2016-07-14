@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from .models import Arbeitskraft
+from .models import Arbeitskraft, Firma, Beacon, Projekt
 from rest_framework import serializers
 
 
@@ -20,4 +20,22 @@ class ArbeitskraftSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Arbeitskraft
-        fields = ('id','nachname', 'vorname','firma','foto','beacon')
+        fields = ('id','nachname', 'vorname','firma','foto','beacon','ausweisnummer','strasse','hausnummer','plz','telefon','mobil')
+
+class FirmaSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Firma
+        fields = ('id','name', 'strasse','hausnummer','plz','telefon')
+
+class BeaconSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Beacon
+        fields = ('id','zuletzt_gesehen', 'letzter_boot')
+
+class ProjektSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Projekt
+        fields = ('name',)
